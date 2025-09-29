@@ -1,4 +1,1042 @@
-
+A System and Method for a
+Neuromorphic-Orchestrated,
+Quantum-Secured 6G Communications
+Network
+Abstract
+A system and method for a self-managing, quantum-secured sixth-generation (6G)
+communications network is disclosed. The system comprises a tri-layered architecture
+featuring a 6G Transport Layer for high-throughput data transmission, a Quantum Security
+Layer (QSL) for providing information-theoretic security, and a Neuromorphic Cognitive
+Orchestration Layer (NCOL) for autonomous network management. The QSL utilizes a hybrid
+of Post-Quantum Cryptography (PQC) and Quantum Key Distribution (QKD) to secure
+network communications against both classical and quantum threats. The NCOL,
+implemented via a distributed network of neuromorphic co-processors running Spiking Neural
+Networks (SNNs), provides real-time, low-latency, and energy-efficient control over both the
+transport and security layers. Key inventive steps include a method for neuromorphic
+management of QKD trusted relays, wherein the NCOL dynamically assesses relay
+trustworthiness to route quantum keys along the most secure paths, thereby mitigating
+critical vulnerabilities in prior art. The invention further includes a system for emergent
+intent-based networking, where the network self-organizes to fulfill high-level service
+objectives, and a method for predictive self-healing based on microsecond-level anomaly
+detection. A quantum-state-aware digital twin, managed by the NCOL, enables high-fidelity
+simulation and pre-validation of network optimizations, including the probabilistic behavior of
+the quantum layer, facilitating true network self-evolution.
+Background of the Invention
+Field of the Invention
+This invention pertains to the field of telecommunications, specifically to the architecture,
+management, and security of next-generation wireless networks. It further relates to the
+integration of quantum communication protocols and neuromorphic computing systems for
+autonomous network orchestration, providing a resilient, intelligent, and secure infrastructure
+for future digital services.
+Description of Related Art
+The evolution of wireless communication has been characterized by generational leaps in
+capability, each enabling new paradigms of connectivity and application. The fifth generation
+(5G) of wireless technology delivered significant advancements through three primary service
+categories: enhanced Mobile Broadband (eMBB), Ultra-Reliable Low-Latency
+Communications (URLLC), and massive Machine-Type Communications (mMTC).
+1 These
+capabilities have begun to power the Internet of Things (IoT), connected vehicles, and
+immersive media. However, the architectural underpinnings of 5G networks, while a
+substantial improvement over previous generations, face fundamental limitations in scalability,
+energy consumption, and management complexity as the world moves towards a true Internet
+of Everything (IoE), where trillions of devices are expected to be connected.
+2
+Projections for the sixth generation (6G) of wireless technology, expected to be
+commercialized around 2030, envision a network that is not merely an incremental
+improvement but a transformative platform.
+4 Key performance indicators for 6G include peak
+data rates of up to 1 terabit per second (Tbps), user-experienced data rates of 1 gigabit per
+second (Gbps), air latency below 100 microseconds, and connection densities exceeding 10
+million devices per square kilometer.
+2 Achieving this vision requires the adoption of new
+technologies such as the use of Terahertz (THz) frequency bands, cell-free massive
+Multiple-Input Multiple-Output (MIMO) antenna systems, and Integrated Sensing and
+Communication (ISAC), where the network infrastructure simultaneously communicates and
+senses the physical environment.
+6 This leap in performance and functionality will create a
+network of unprecedented complexity, where traditional network management and
+orchestration (MANO) systems, even those augmented with conventional Artificial Intelligence
+(AI), will be insufficient.
+9 The 6G network is envisioned as an AI-native system, a "distributed
+neural network" that fuses the physical, biological, and cyber worlds.
+11 This inherent
+complexity demands a new paradigm of autonomous, intelligent, and efficient control.
+Concurrently with the development of 6G, the field of quantum computing is rapidly
+advancing, posing a catastrophic threat to the security infrastructure that underpins the
+entire digital economy. Current public-key cryptography systems, such as RSA and Elliptic
+Curve Cryptography (ECC), rely on the computational difficulty of mathematical problems like
+factoring large integers.
+12 A sufficiently powerful quantum computer, running algorithms like
+Shor's algorithm, will be able to solve these problems in a trivial amount of time, rendering
+nearly all currently deployed secure communication protocols obsolete.
+13 This vulnerability is
+not a distant threat but an immediate one, due to the "harvest now, decrypt later" attack
+vector.
+14 Adversaries are actively intercepting and storing vast quantities of encrypted data
+today, with the intention of decrypting it once a cryptographically relevant quantum computer
+becomes available. This compromises the long-term security of sensitive government,
+financial, and personal data transmitted over current networks.
+17
+In response to this quantum threat, two primary security solutions have emerged:
+Post-Quantum Cryptography (PQC) and Quantum Key Distribution (QKD). PQC involves the
+development of new classical cryptographic algorithms based on mathematical problems
+believed to be hard for both classical and quantum computers.
+12 While PQC offers a
+software-based upgrade path, its long-term security is based on unproven computational
+assumptions. QKD, conversely, offers information-theoretic security based on the
+fundamental laws of quantum mechanics, such as the no-cloning theorem and the principle
+that measurement disturbs a quantum system.
+20 QKD allows two parties to generate a shared
+secret key with the guarantee that any attempt by an eavesdropper to intercept the key will be
+detected. However, the practical deployment of QKD over wide-area networks is severely
+hampered by a critical architectural flaw: its reliance on "trusted relays" or "trusted nodes".
+19
+Due to photon loss in optical fiber, QKD links are typically limited to distances of a few
+hundred kilometers.
+23 To extend this range, intermediate nodes must receive the quantum
+signal, convert it to a classical key, and then retransmit it on a new quantum link. These
+trusted relays possess the full secret key and thus represent highly attractive targets for
+physical or cyber-attack. The compromise of a single trusted relay can invalidate the security
+of the entire communication chain, a vulnerability that significantly curtails the promise of
+QKD.
+19
+To manage the complexity of 5G and future 6G networks, AI and Machine Learning (ML) have
+been widely adopted for tasks such as network optimization, traffic management, and
+predictive maintenance.
+6 Existing patents, including those held by the assignee, describe
+systems for AI-driven network reconciliation and security threat detection.
+27 However, these AI
+systems are predominantly based on conventional von Neumann computing architectures,
+such as Graphics Processing Units (GPUs) and Tensor Processing Units (TPUs). While
+powerful for offline training of large models, these architectures are ill-suited for the
+real-time, distributed, and energy-constrained demands of 6G network control. They exhibit
+high energy consumption, introduce significant latency in the decision-making loop, and
+operate on a reactive or slow predictive cycle based on large historical datasets.
+30 This makes
+them incapable of responding to network dynamics at the microsecond timescale required for
+6G URLLC services or detecting subtle, real-time anomalies indicative of sophisticated
+security breaches.
+The prior art thus presents a set of profound, interdependent challenges. The escalating
+complexity of 6G networks demands a more powerful form of autonomous management. The
+looming quantum threat necessitates a new security paradigm, yet the most promising
+solution, QKD, contains a fundamental vulnerability. The conventional AI tools used to manage
+network complexity are too slow, power-hungry, and reactive to effectively control a 6G
+system or secure a quantum network in real time. What is needed, and what is absent from
+the prior art, is a unified architecture that holistically solves these interconnected
+problems—a system that is simultaneously ultra-fast, ultra-secure, and ultra-intelligent by
+design.
+Metric Traditional
+Management
+(Manual/Scripted)
+Conventional
+AI-Driven (e.g., 5G
+SON with ML)
+Proposed
+Neuromorphic
+Orchestration
+Decision Latency Hours to Days Milliseconds to
+Seconds
+30
+Microseconds
+33
+Energy
+Consumption
+N/A (Human OPEX) High (e.g., 10-100+
+Watts per GPU)
+32
+Ultra-Low (e.g., <1
+Watt per NPU)
+32
+Adaptability to
+Novel Events
+Low (Requires
+manual
+reprogramming)
+Medium (Requires
+model retraining on
+new data)
+High (Real-time
+learning via
+synaptic plasticity)
+34
+Security
+Response Time
+Slow (Reactive to
+alerts)
+Slow (Based on
+historical traffic
+analysis)
+Real-Time
+(Event-driven
+anomaly detection)
+35
+Scalability of
+Control
+Poor (Limited by
+human operators)
+Moderate
+(Bottlenecked by
+centralized
+processing)
+High (Distributed,
+parallel,
+asynchronous
+processing)
+37
+Quantum Security
+Vulnerability
+Complete (Relies
+on classical crypto)
+Complete (Relies
+on classical crypto)
+Mitigated
+(Manages QKD &
+PQC layers)
+QKD Relay
+Vulnerability
+N/A N/A Addressed
+(Dynamic trust
+scoring & routing)
+Table 1: Comparison of Network Management Paradigms
+Summary of the Invention
+The present invention provides a system and method for a neuromorphic-orchestrated,
+quantum-secured 6G communications network that overcomes the aforementioned
+limitations of the prior art. The invention introduces a holistic, tri-layered architecture that
+natively integrates an ultra-fast 6G Transport Layer, an ultra-secure Quantum Security Layer
+(QSL), and an ultra-intelligent Neuromorphic Cognitive Orchestration Layer (NCOL).
+The NCOL serves as the cognitive core of the network, implemented as a distributed system
+of brain-inspired neuromorphic processors. Unlike conventional AI systems, the NCOL
+operates on the principles of Spiking Neural Networks (SNNs), enabling event-driven,
+asynchronous, and massively parallel processing. This results in decision-making and control
+loops that operate at microsecond latencies with orders-of-magnitude lower power
+consumption, providing the real-time intelligence necessary to manage the complexity of the
+6G Transport Layer.
+The QSL provides provable, long-term security against quantum adversaries through a hybrid
+approach. It utilizes Post-Quantum Cryptography (PQC) for robust authentication and
+control-plane security, while leveraging Quantum Key Distribution (QKD) over the assignee's
+extensive fiber infrastructure to generate information-theoretically secure keys for encrypting
+high-value user data.
+A primary object of the invention is to solve the critical "trusted relay" vulnerability inherent in
+prior art QKD networks. This is achieved through a novel method wherein the NCOL
+continuously monitors the classical and quantum operational parameters of all QKD relays.
+Using its real-time pattern recognition capabilities, the NCOL assigns a dynamic "Trust Score"
+to each relay and intelligently routes quantum key generation requests along paths of highest
+aggregate trust, effectively creating a self-healing security fabric that can preemptively
+isolate potentially compromised nodes.
+Another object of the invention is to introduce a new paradigm of network management,
+termed Emergent Intent-Based Networking. High-level business or service intents are
+translated into reward functions for the distributed SNNs of the NCOL. The network then
+self-organizes its resources and configuration, allowing the optimal operational state to
+emerge from the collective behavior of the neuromorphic agents, rather than being dictated
+by rigid, pre-programmed policies. This enables unprecedented adaptability to novel
+conditions and service requirements.
+A further object of the invention is to provide a system for real-time predictive self-healing. By
+processing high-dimensional data streams from the 6G layer's integrated sensing capabilities,
+the NCOL's SNNs can detect subtle spatio-temporal precursors to hardware failures or
+performance degradation, triggering proactive mitigation measures before any service impact
+is experienced by the user.
+Finally, an object of the invention is to introduce a Quantum-State-Aware Digital Twin. This is a
+high-fidelity simulation of the entire network, managed by the NCOL, which models not only
+the classical state of the transport layer but also the probabilistic quantum states of the QSL.
+This allows the NCOL to perform "future shot" simulations to pre-validate complex
+optimization and security strategies without risk to the live network, enabling a continuous
+cycle of self-evolution and improvement. The invention provides a clear path to
+commercialization through new premium service offerings, including
+Quantum-Security-as-a-Service (QSaaS) and Neuromorphic-Orchestration-as-a-Service
+(NOaaS).
+Brief Description of the Drawings
+The invention will be more fully understood from the following detailed description taken in
+conjunction with the accompanying drawings, in which:
+FIG. 1 is a schematic block diagram illustrating the high-level tri-layered system architecture
+of the neuromorphic-orchestrated, quantum-secured 6G communications network.
+FIG. 2 is a detailed schematic diagram of the Quantum Security Layer, illustrating the
+interconnection of QKD links, trusted relays, and next-generation quantum repeaters within
+the network infrastructure.
+FIG. 3 is a detailed schematic diagram of the Neuromorphic Cognitive Orchestration Layer,
+illustrating the distributed placement of neuromorphic co-processors (NPUs) at edge and
+core network nodes and the logical structure of the Spiking Neural Network (SNN) models
+they execute.
+FIG. 4 is a process flowchart illustrating the steps of the Neuromorphic-Managed Trusted
+Relay System, including data ingestion, anomaly detection, dynamic trust scoring, and
+intelligent key routing.
+FIG. 5 is a process flowchart illustrating the steps of Emergent Intent-Based Networking,
+including intent translation into reward functions, network self-organization through synaptic
+plasticity, and the emergence of an optimal network state.
+FIG. 6 is a conceptual diagram of the Quantum-State-Aware Digital Twin, illustrating its hybrid
+classical-quantum modeling approach and its interaction with the NCOL for "future shot"
+simulations and pre-validation of network strategies.
+Detailed Description of the Invention
+The present invention provides a comprehensive architecture for a next-generation
+communications network that is fundamentally autonomous, secure, and efficient. The system
+is designed to meet and exceed the projected demands of the 6G era by synergistically
+combining advances in wireless communication, quantum physics, and neuromorphic
+computing.
+I. System Architecture: The Tri-Layered Cognitive Network
+Referring to FIG. 1, the system architecture 100 is logically and functionally partitioned into
+three distinct yet deeply integrated layers: a 6G Transport Layer 110, a Quantum Security
+Layer (QSL) 120, and a Neuromorphic Cognitive Orchestration Layer (NCOL) 130. This layered
+approach allows for separation of concerns while enabling powerful cross-layer optimization
+and control facilitated by the NCOL 130.
+The 6G Transport Layer 110 constitutes the physical infrastructure responsible for data
+transmission and sensing. This layer embodies the technological advancements anticipated
+for 6G networks.
+8
+It comprises a Radio Access Network (RAN) featuring cell-free massive
+MIMO antenna arrays and operating in frequency bands up to and including the Terahertz
+(THz) spectrum to achieve multi-terabit-per-second data rates.
+2 A core component of this
+layer is Integrated Sensing and Communication (ISAC), wherein network elements such as
+base stations and user equipment (UE) not only transmit and receive data but also actively
+sense the physical environment by analyzing radio wave reflections.
+7 This provides a rich,
+real-time stream of contextual data about the network's operating environment. The transport
+layer is further supported by a high-capacity optical fiber backhaul and a cloud-native,
+service-based core network architecture that is disaggregated and virtualized, running on
+commodity hardware from the network core to the far edge.
+7 This layer serves as the conduit
+for all user plane data, control plane signaling, and the raw sensory data ingested by the
+NCOL 130.
+The Quantum Security Layer (QSL) 120 is an overlay network dedicated to providing robust,
+future-proof cryptographic services. It operates in parallel with the 6G Transport Layer 110,
+generating and distributing secure keys that are used to encrypt traffic flowing through the
+transport layer. The QSL 120 is implemented primarily over the assignee's existing and
+future-deployed optical fiber infrastructure, which is a prerequisite for practical quantum
+communication.
+40 The QSL 120 is not a monolithic security solution but a hybrid framework,
+as will be detailed in Section II. Its primary function is to secure the network against attacks
+from both classical supercomputers and future fault-tolerant quantum computers, addressing
+the critical "harvest now, decrypt later" threat.
+14
+The Neuromorphic Cognitive Orchestration Layer (NCOL) 130 is the intelligent control
+plane and the central nervous system of the entire architecture. It is a distributed intelligence
+system, physically realized by deploying specialized neuromorphic co-processors (NPUs) at
+strategic points throughout the network infrastructure, including base stations, edge data
+centers, and core network nodes.
+42 These NPUs are designed to execute Spiking Neural
+Networks (SNNs), a class of brain-inspired AI models that operate asynchronously and in an
+event-driven manner.
+34 This architecture allows the NCOL 130 to monitor the state of both the
+6G Transport Layer 110 and the QSL 120 with microsecond-level latency and extremely low
+power consumption.
+30
+It receives high-dimensional, real-time data streams—including traffic
+statistics, ISAC environmental data, and quantum channel state information—and uses this
+data to perform autonomous orchestration, predictive maintenance, and dynamic security
+management, as detailed in subsequent sections. The NCOL 130 replaces the slow,
+energy-intensive, and reactive control loops of conventional AI-managed networks with a
+proactive, adaptive, and highly efficient cognitive engine.
+II. The Quantum Security Layer (QSL)
+The QSL 120 is designed to provide end-to-end, long-term security for all communications
+within the network. It achieves this through a sophisticated hybrid framework that combines
+the strengths of multiple quantum-resistant technologies, ensuring both immediate and
+future protection.
+Hybrid Security Framework
+The security of the QSL 120 is founded on a two-pronged approach:
+1. Post-Quantum Cryptography (PQC): The system utilizes PQC algorithms, such as
+those standardized by the National Institute of Standards and Technology (NIST), for
+critical functions like digital signatures, authentication, and initial key establishment.
+14
+These are classical algorithms designed to run on conventional hardware but are based
+on mathematical problems (e.g., lattice-based, code-based, or hash-based problems)
+that are believed to be intractable for both classical and quantum computers.
+12 PQC
+provides a crucial baseline of security, enabling a secure boot-strapping process for
+network elements and securing control plane communications. It offers a practical,
+software-based path to quantum readiness that can be deployed across the entire
+network, including on resource-constrained IoT devices where implementing QKD is not
+feasible.
+44
+2. Quantum Key Distribution (QKD): For securing high-value user plane data, particularly
+for services demanding the highest level of long-term confidentiality, the QSL 120
+employs QKD. As shown in FIG. 2, QKD protocols (e.g., BB84 or entanglement-based
+variants) are used to establish symmetric cryptographic keys between two endpoints
+(e.g., Alice 210 and Bob 220) over a dedicated quantum channel 230, typically an optical
+fiber.
+21 The security of these keys is not based on computational assumptions but on the
+laws of quantum physics. Any attempt by an eavesdropper (Eve 240) to measure the
+qubits in transit will inevitably disturb their state, introducing detectable errors and
+alerting Alice and Bob to the presence of an attack.
+21 This provides information-theoretic
+security and forward secrecy, ensuring that keys established today cannot be
+compromised by any future computational advancements, including quantum
+computers.
+20
+Inventive Step 1: Neuromorphic-Managed Trusted Relay System
+A fundamental challenge limiting the scalability and practical security of QKD is its reliance on
+trusted relays 250 to extend its range beyond approximately 100-200 km.
+23 Each trusted relay
+250 is a node that terminates a QKD link, classically processes the key, and initiates a new
+QKD link. This node becomes a point of absolute trust, as it holds the unencrypted key
+material.
+19 A physical or cyber compromise of a single relay can expose the entire key chain,
+undermining the end-to-end security guarantee of QKD. This invention introduces a novel
+system to transform this brittle, static trust model into a dynamic, resilient, and continuously
+verified one, managed by the NCOL 130.
+The process, illustrated in the flowchart of FIG. 4, replaces the binary concept of a "trusted
+node" with a continuous, real-time "Trust Score."
+1. Continuous Data Ingestion (Step 410): Each QKD relay 250 and next-generation
+quantum repeater 260 in the network is equipped with sensors that feed data to a local
+or nearby NCOL neuromorphic processor. This data includes classical operational
+parameters (e.g., power consumption, temperature, CPU/memory utilization, network
+traffic on classical channels) and quantum performance metrics (e.g., Quantum Bit Error
+Rate (QBER), sifted key rate, photon detection counts, entanglement fidelity).
+2. Neuromorphic Anomaly Detection (Step 420): A dedicated SNN within the NCOL is
+trained to recognize the baseline, high-dimensional spatio-temporal signature of a
+"healthy" relay. Unlike conventional systems that monitor individual thresholds, the SNN
+learns the complex correlations between all parameters. Its event-driven nature allows it
+to operate with microsecond latency, detecting subtle deviations that may signal a
+sophisticated attack, such as a side-channel attack attempting to glean information from
+power fluctuations or timing variations, or the initial stages of a physical tampering
+event.
+36 The system's ability to process sparse, event-driven data makes it exceptionally
+efficient for this continuous monitoring task.
+34
+3. Dynamic Trust Scoring (Step 430): Based on the output of the anomaly detection SNN,
+the NCOL assigns a continuously updated Trust Score, a value between 0 and 1, to each
+relay node. A score of 1 represents a perfectly healthy node operating within all expected
+parameters. The detection of any anomaly, even a minor one, causes an immediate decay
+in the score, with the magnitude of the decay proportional to the severity of the anomaly.
+The score gradually recovers back towards 1 during periods of sustained nominal
+operation. This transforms trust from a static assumption into a dynamic, quantifiable
+metric.
+4. Intelligent Key Routing (Step 440): When an application requests a secure QKD
+channel between two endpoints (e.g., Alice 210 and Bob 220), the request is handled by
+the NCOL. The NCOL models the QKD network as a weighted graph, where the relays are
+vertices and the links are edges. Instead of using physical distance or latency as the
+primary path weight, it uses the inverse of the Trust Score. The NCOL then executes a
+pathfinding algorithm (Step 450) to determine the route through the network that
+maximizes the product of the Trust Scores of the relays along the path. This ensures that
+the cryptographic key is always generated and relayed through the chain of nodes that
+is, at that precise moment, demonstrably the most secure. If the trust score of a relay on
+an active path drops below a critical threshold, the NCOL can proactively trigger a key
+re-establishment on an alternative, more trusted path before a compromise can occur
+(Step 460).
+This neuromorphic management system effectively solves the Achilles' heel of QKD. It creates
+a security infrastructure with biological-like reflexes, capable of identifying and isolating
+threats at the speed of physical events, thereby enabling the deployment of a scalable and
+genuinely secure quantum network. This approach also extends to future quantum repeaters
+260, where the NCOL can manage the complex processes of entanglement swapping and
+purification, optimizing performance based on real-time measurements of entanglement
+fidelity.
+50
+III. The Neuromorphic Cognitive Orchestration Layer (NCOL)
+The NCOL 130 represents a fundamental departure from traditional network control planes. It
+is designed to emulate the efficiency, adaptability, and parallelism of the biological brain to
+manage the immense complexity of the quantum-secured 6G network.
+Hardware and Software Implementation
+As shown in FIG. 3, the NCOL is not a centralized entity but a distributed intelligence fabric. It
+is composed of a multitude of neuromorphic co-processors (NPUs) 310, such as Intel's Loihi 2
+or a future proprietary AT&T design, integrated into network equipment at all levels, from the
+edge (e.g., gNodeB 320) to the core (e.g., Core Network Functions 330).
+43 These NPUs are not
+von Neumann processors; they are purpose-built silicon architectures that physically
+implement artificial neurons and synapses.
+34
+The software running on these NPUs consists of Spiking Neural Networks (SNNs) 340. In an
+SNN, information is encoded in the timing of discrete events, or "spikes," much like the action
+potentials in the brain.
+35 Neurons integrate incoming spikes over time, and when their internal
+membrane potential reaches a threshold, they fire a spike of their own. This event-driven,
+asynchronous mode of computation has profound advantages over the clock-driven, dense
+matrix multiplications of conventional Artificial Neural Networks (ANNs)
+30
+:
+● Ultra-Low Power: Neurons and synapses only consume power when they are actively
+processing a spike. For the sparse activity typical of many real-world monitoring tasks,
+this results in orders-of-magnitude lower energy consumption compared to GPUs.
+31
+● Ultra-Low Latency: Processing occurs as soon as an event (a spike) arrives, eliminating
+the frame-based processing delays of conventional systems. This enables
+decision-making on microsecond timescales.
+33
+● Inherent Temporality: SNNs are naturally suited to processing complex, time-varying
+data streams, such as network traffic patterns or quantum channel fluctuations, without
+the need for complex recurrent architectures like LSTMs.
+56
+● Plasticity: SNNs can incorporate local learning rules, such as Spike-Timing-Dependent
+Plasticity (STDP), where the strength of a synapse is modified based on the relative
+timing of pre- and post-synaptic spikes. This allows the network to learn and adapt
+continuously in real-time.
+35
+Inventive Step 2: Emergent Intent-Based Networking (IBN)
+Current IBN frameworks, while a step towards automation, are fundamentally procedural. A
+human operator expresses a high-level intent (e.g., "ensure 1ms latency for service X"), which
+a controller translates into a specific, pre-defined set of low-level policies and
+configurations.
+58 This approach is brittle; it cannot adapt to network conditions or service
+demands that were not explicitly foreseen by the programmers.
+This invention introduces a more advanced, biologically inspired form of IBN, as illustrated in
+FIG. 5.
+1. Intent Translation into Objectives (Step 510): A high-level business or service intent,
+which can be expressed in natural language, is received by the NCOL. Instead of
+mapping this to a static policy, a high-level AI model (which can be a conventional LLM
+integrated with the NCOL) translates the intent into a set of mathematical objective
+functions and constraints that are distributed to the SNNs across the network.
+60 For an
+intent like "Provide a secure, low-latency channel for a surgical robot swarm," the
+objectives might be to minimize latency, maximize the QKD key rate, and keep the packet
+drop rate below a certain threshold.
+2. Network Self-Organization (Step 520): The distributed SNNs of the NCOL operate as a
+collective, with each local SNN agent controlling its local resources (e.g., RAN scheduler,
+QKD relay parameters, edge compute allocation). The agents do not follow a central
+command. Instead, they continuously adapt their behavior and control parameters,
+driven by local plasticity rules (e.g., STDP) that are modulated by the global objective
+functions.
+61 An agent's actions that contribute positively to the global objectives are
+reinforced, strengthening the synaptic pathways that led to those actions. Actions that
+are detrimental are weakened.
+3. Emergence of Optimal State (Step 530): Through this process of continuous,
+distributed, and parallel adaptation, the globally optimal network configuration emerges
+from the local interactions of the SNN agents. The network literally learns how to best
+fulfill the intent under the current, real-time conditions. If a new, unforeseen type of
+interference appears, the network will autonomously learn a new resource allocation
+strategy to circumvent it and maintain the intent, without any human intervention or
+reprogramming. This aligns with the 6G vision of the network itself becoming a form of
+distributed intelligence.
+11
+Inventive Step 3: Real-Time Predictive Self-Healing
+Conventional network maintenance is reactive. An alarm is triggered, and then a remediation
+process begins. Predictive maintenance in 5G uses ML to analyze historical data to forecast
+potential failures, but this process is often slow and can miss novel, "black swan" failure
+modes.
+6
+The NCOL enables a proactive, real-time self-healing capability that operates at the speed of
+the network itself.
+1. Multi-Modal Sensing: The NCOL ingests a rich, multi-modal dataset in real-time. This
+includes not only network-level data (packet flows, latency, jitter) but also physical-layer
+data from ISAC (RF interference patterns, object detection near infrastructure) and
+physical sensor data (temperature, vibration, power draw of network components).
+7
+2. Spatio-Temporal Pattern Recognition: The distributed SNNs are trained to recognize
+the subtle, complex spatio-temporal patterns that are precursors to failure. For example,
+a specific SNN model might learn that a unique RF interference pattern, combined with a
+2-degree increase in a power amplifier's temperature and a 5% increase in a specific
+type of packet retransmission, is a high-confidence predictor of a hardware failure within
+the next 60 seconds.
+64
+3. Proactive Remediation: Upon detecting such a precursor pattern, the NCOL triggers an
+autonomous self-healing workflow. This can include seamlessly rerouting traffic away
+from the at-risk component, provisioning a redundant virtual network function on a
+different physical server, and automatically generating a detailed maintenance ticket—all
+before any user-perceptible service degradation occurs.
+67 This transforms network
+maintenance from a reactive, OPEX-intensive process into a proactive, autonomous
+function that maximizes service availability and reliability.
+IV. Cross-Layer Integration and Operation
+The true power of the disclosed architecture lies in the deep, real-time integration between
+the three layers, orchestrated by the NCOL. This integration is best exemplified by the
+invention's novel approach to network simulation and pre-validation.
+Inventive Step 4: The Quantum-State-Aware Digital Twin
+Digital Twins are a known concept in network management, representing a virtual replica of
+the physical network used for monitoring, simulation, and "what-if" analysis.
+69 However,
+existing digital twins are purely classical; they can model traffic flows, hardware states, and
+software configurations, but they are fundamentally incapable of modeling the probabilistic,
+fragile, and non-deterministic nature of a quantum network. An action that appears optimal in
+a classical simulation could have disastrous, unforeseen consequences on the quantum state
+of the QSL.
+This invention introduces a Quantum-State-Aware Digital Twin, a high-fidelity, hybrid
+classical-quantum simulation environment managed by the NCOL, as depicted in FIG. 6.
+1. Hybrid Modeling: The digital twin 600 comprises two interconnected models. A
+classical model 610 represents the 6G Transport Layer 110, simulating everything from RF
+propagation to packet queuing and compute resource utilization. A quantum model 620
+represents the QSL 120. This is not a full quantum computer simulation, which would be
+intractable. Instead, it is a probabilistic simulation that models the quantum state of key
+components. For example, a QKD link is not represented as a simple channel but by its
+density matrix, which captures its state, including its fidelity, coherence, and
+susceptibility to decoherence, informed by real-time data from the physical network.
+70
+2. Real-Time Synchronization: The twin is not a static model. It is continuously updated
+with real-time telemetry from the live network. The classical model 610 is fed with data
+from the 6G Transport Layer 110 (e.g., traffic loads, latency measurements). The quantum
+model 620 is fed with data from the QSL 120 (e.g., QBER, key rates, entanglement fidelity
+measurements). This ensures the twin is always a high-fidelity mirror of the current state
+of the entire hybrid network.
+3. Neuromorphic-Powered "Future Shots": The NCOL 130 uses this advanced digital twin
+for predictive optimization and pre-validation.
+69 Before implementing any significant
+change in the live network (e.g., rerouting a major traffic trunk, deploying a new network
+slice, or changing a QKD path), the NCOL first performs a "future shot" simulation within
+the twin. It can simulate the proposed change and project the network's state (both
+classical and quantum) forward in time, assessing the full impact of the decision. For
+example, it can predict not only that a traffic reroute will reduce latency but also that the
+increased data load on a particular fiber will create thermal noise that slightly increases
+the QBER on a co-located QKD link, potentially violating a service's security SLA. This
+level of cross-layer, predictive insight is impossible with prior art.
+This capability enables the network to achieve true self-evolution. The NCOL can continuously
+experiment with novel optimization strategies within the safe confines of the digital twin,
+validating their efficacy and safety before deploying only the most beneficial changes to the
+live network. This creates a perpetual loop of improvement, allowing the network to adapt and
+evolve its own operation to meet new challenges and demands over time. The management of
+this complex, hybrid simulation is a task for which neuromorphic computing is uniquely suited,
+given its ability to handle complex dynamical systems and its potential application in
+controlling quantum systems.
+54
+V. Embodiments and Commercial Applications
+The described invention is not merely a theoretical architecture but a platform for a new
+generation of high-value, high-margin services that generate significant business revenue
+and provide a distinct competitive advantage. This aligns with the assignee's strategic focus
+on moving beyond basic connectivity to deliver innovative, integrated solutions.
+73 The system
+can be commercialized through several distinct embodiments.
+Embodiment 1: Quantum-Security-as-a-Service (QSaaS)
+The QSL, managed by the NCOL, enables the offering of tiered, provably secure
+communication services that address the urgent market need for quantum-resistant
+security.
+75
+● QSaaS Platinum: This premier offering provides an end-to-end QKD-secured virtual
+private network with the highest level of assurance. It features guaranteed low QBER,
+high secret key rates, and dynamic, NCOL-managed key routing to ensure continuous
+security even in the face of potential node compromises. Target markets include national
+security agencies, financial institutions for applications like high-frequency trading and
+secure transaction settlement, and healthcare organizations for protecting sensitive
+patient data for lifetimes.
+45
+● QSaaS Gold: This tier offers a hybrid PQC/QKD solution designed for enterprises that
+require long-term, archival security for their intellectual property and sensitive corporate
+data. It protects against the "harvest now, decrypt later" threat by using QKD to secure
+the exchange of session keys, which are then used with PQC-hardened symmetric
+encryption algorithms. This provides a cost-effective balance of performance and
+long-term security.
+Embodiment 2: Neuromorphic-Orchestration-as-a-Service (NOaaS)
+The intelligence of the NCOL can be packaged and sold as a managed service for the growing
+market of private 5G/6G networks.
+6
+● NOaaS for Smart Factories: In an Industry 4.0 environment, the NCOL can
+autonomously manage network slices for thousands of IoT sensors, robotic arms, and
+control systems, guaranteeing URLLC for mission-critical processes while optimizing
+energy consumption.
+26 The predictive self-healing capabilities would drastically reduce
+downtime by anticipating equipment and network failures.
+● NOaaS for Smart Cities: The NCOL can manage city-wide networks supporting
+autonomous vehicles, public safety drones, and critical infrastructure monitoring. Its
+ability to self-organize in response to dynamic events (e.g., automatically prioritizing
+emergency responder traffic during an incident) provides a level of resilience and
+efficiency unattainable with current systems.
+2
+Embodiment 3: Premium URLLC Services
+The full, integrated tri-layer system enables a new class of premium services that
+simultaneously require extreme performance on all vectors: speed, latency, reliability, and
+security.
+● Telesurgery and Remote Healthcare: Providing the unbreachable, sub-millisecond
+latency connection required for a surgeon to operate a robotic arm from hundreds of
+miles away, where a single dropped packet or a momentary lag could have
+life-threatening consequences.
+2
+● Autonomous Vehicle Swarm Coordination: Enabling real-time, secure
+vehicle-to-everything (V2X) communication for fleets of autonomous trucks or drones,
+where collective decision-making requires both instantaneous data exchange and
+immunity from malicious takeover attacks.
+77
+● City-Scale Digital Twins: Providing the massive, secure, and real-time data ingestion
+backbone required to power a live digital twin of a metropolitan area, used for traffic
+optimization, energy management, and emergency response simulation.
+69
+Service Tier Target Market Key Technical
+Features
+Billing Model
+QSaaS Platinum Defense,
+Intelligence,
+High-Frequency
+Trading
+End-to-end QKD
+encryption;
+Guaranteed QBER
+<10−8; NCOL
+dynamic key
+routing; Full
+protection against
+quantum
+Per-Gbps-Secure
+monthly fee;
+Premium
+per-key-exchange
+charge.
+adversaries.
+QSaaS Gold Enterprise (IP
+Protection),
+Healthcare
+(Records), Legal
+Hybrid PQC/QKD
+security; Protection
+against "harvest
+now, decrypt later"
+attacks; Long-term
+data archival
+security.
+Subscription-based
+; Tiered by data
+volume and
+retention period.
+NOaaS for Private
+6G
+Smart Factories,
+Logistics Hubs,
+Smart Cities
+Fully autonomous
+network
+management via
+NCOL; Predictive
+self-healing;
+Emergent
+intent-based
+network slicing;
+OPEX reduction
+guarantee.
+Per-managed-node
+subscription;
+Revenue sharing on
+OPEX savings.
+Premium URLLC Telesurgery,
+Autonomous
+Systems, Immersive
+XR
+Sub-100
+microsecond
+latency; 99.9999%
+reliability; Full QSL
+security;
+Guaranteed QoS
+via NCOL
+orchestration.
+Premium
+per-session or
+per-device
+connectivity fee;
+SLA-based pricing.
+Table 2: Service Tiers and Associated Revenue Models
+Claims
+What is claimed is:
+1. A telecommunications system, comprising:
+a transport layer configured to transmit data packets, said transport layer including a
+plurality of radio access network nodes and a core network;
+a quantum security layer, communicatively coupled to the transport layer, configured to
+generate and distribute cryptographic keys using quantum mechanical principles; and
+a neuromorphic cognitive orchestration layer, comprising a distributed network of
+neuromorphic processors executing spiking neural networks, configured to receive
+real-time operational data from the transport layer and the quantum security layer, and
+to autonomously manage network resources and security policies of said layers based on
+an analysis of the real-time operational data.
+2. The system of claim 1, wherein the quantum security layer comprises a plurality of
+quantum key distribution (QKD) relays, and wherein the neuromorphic cognitive
+orchestration layer is further configured to:
+receive a set of classical and quantum performance metrics from each of the plurality of
+QKD relays;
+calculate, for each QKD relay, a real-time trust score based on a detection of anomalies
+within the set of performance metrics; and
+select a path for distributing a cryptographic key through a subset of the plurality of QKD
+relays based on maximizing an aggregate trust score along the path.
+3. The system of claim 2, wherein the quantum performance metrics include at least one of
+a Quantum Bit Error Rate (QBER) or an entanglement fidelity measurement.
+4. The system of claim 1, wherein the neuromorphic cognitive orchestration layer is further
+configured to:
+receive a high-level service intent;
+translate the high-level service intent into a set of objective functions; and
+adapt, via synaptic plasticity in the spiking neural networks, operational parameters of
+the transport layer and the quantum security layer to optimize for the set of objective
+functions, whereby a network configuration that fulfills the intent emerges from a
+self-organizing process.
+5. The system of claim 1, wherein the transport layer further comprises integrated sensing
+and communication (ISAC) capabilities configured to generate environmental data, and
+wherein the neuromorphic cognitive orchestration layer is further configured to:
+receive the environmental data and network performance data;
+identify a spatio-temporal pattern within the received data that is a precursor to a
+network fault; and
+in response to identifying the pattern, proactively reconfigure a network resource to
+prevent the network fault before a service degradation occurs.
+6. The system of claim 1, further comprising a digital twin of the telecommunications system
+managed by the neuromorphic cognitive orchestration layer, wherein the digital twin
+comprises:
+a classical model representing a state of the transport layer; and
+a quantum model representing a probabilistic quantum state of the quantum security
+layer, said quantum model being continuously updated with real-time measurement data
+from the quantum security layer.
+7. The system of claim 6, wherein the neuromorphic cognitive orchestration layer is further
+configured to execute a simulation of a proposed network configuration change within
+the digital twin to predict a future classical and quantum state of the system prior to
+implementing the change on the live telecommunications system.
+8. A method for managing a communications network, comprising:
+generating, via a quantum security layer, a cryptographic key;
+transmitting, via a transport layer, data encrypted with the cryptographic key;
+monitoring, via a distributed neuromorphic cognitive orchestration layer, a plurality of
+real-time operational parameters of the quantum security layer and the transport layer;
+and
+autonomously adjusting, via the neuromorphic cognitive orchestration layer, a network
+resource configuration in response to an event-driven analysis of the operational
+parameters.
+9. The method of claim 8, wherein the step of generating a cryptographic key involves a
+plurality of quantum key distribution (QKD) relays, the method further comprising:
+assigning, by the neuromorphic cognitive orchestration layer, a dynamic trust score to
+each of the QKD relays based on detecting anomalies in their operational parameters;
+and
+routing the generation of the cryptographic key through a path of relays selected to
+maximize trustworthiness based on the dynamic trust scores.
+10. The method of claim 8, further comprising:
+maintaining, by the neuromorphic cognitive orchestration layer, a hybrid digital twin that
+models both classical network states and probabilistic quantum network states; and
+pre-validating, within the hybrid digital twin, an effect of a potential adjustment to the
+network resource configuration on both the classical and quantum states before
+implementing said adjustment.
+Works cited
+1. What's the latest on 6G? Standards, features, use cases and timeline - Thales,
+accessed on September 27, 2025,
+https://www.thalesgroup.com/en/worldwide/digital-identity-and-security/magazin
+e/whats-latest-6g-standards-features-use-cases-and
+2. What To Expect From 6G - SmartViser, accessed on September 27, 2025,
+https://www.smartviser.com/post/what-to-expect-from-6g
+3. The path to 6G - European Parliament, accessed on September 27, 2025,
+https://www.europarl.europa.eu/RegData/etudes/BRIE/2024/757633/EPRS_BRI(202
+4)757633_EN.pdf
+4. 6G Development: How Soon Will It Arrive? - PatentPC, accessed on September
+27, 2025, https://patentpc.com/blog/6g-development-how-soon-will-it-arrive
+5. 6G standardization – an overview of timeline and high-level technology principles
+- Ericsson, accessed on September 27, 2025,
+https://www.ericsson.com/en/blog/2024/3/6g-standardization-timeline-and-tech
+nology-principles
+6. Next 6G: Key Features, Use Cases, and Challenges of Tomorrow's Wireless
+Revolution, accessed on September 27, 2025,
+https://www.e-spincorp.com/next-6g-key-features-use-cases/
+7. Co-creating a cyber physical world with 6G - Ericsson, accessed on September
+27, 2025,
+https://www.ericsson.com/en/reports-and-papers/white-papers/co-creating-a-cy
+ber-physical-world
+8. 6G - Wikipedia, accessed on September 27, 2025, https://en.wikipedia.org/wiki/6G
+9. Exploring the key technologies and applications of 6G wireless communication
+network - PMC - PubMed Central, accessed on September 27, 2025,
+https://pmc.ncbi.nlm.nih.gov/articles/PMC12018058/
+10. Orchestration for 6G: Automating the Networks of Tomorrow | by 6G-Cloud -
+Medium, accessed on September 27, 2025,
+https://medium.com/@6g-cloud/orchestration-for-6g-automating-the-networksof-tomorrow-aedb15d22784
+11. 6G: The Next Horizon White Paper - Huawei, accessed on September 27, 2025,
+https://www.huawei.com/en/huaweitech/future-technologies/6g-white-paper
+12. Quantum-Safe Networks for 6G an Inte- grated Survey on PQC, QKD, and Satel -
+Scifiniti, accessed on September 27, 2025,
+https://www.scifiniti.com/uploads/source/articles/computingai-connect/1970/volu
+me2/19700016/article.pdf
+13. Post Quantum Cryptography - Huawei, accessed on September 27, 2025,
+https://www.huawei.com/en/trust-center/post-quantum-cryptography
+14. Post-Quantum Security: Essential Guide to Future-Proofing 6G and Telecom
+Networks, accessed on September 27, 2025,
+https://www.6gacademy.com/what-it-is-post-quantum-security/
+15. What is Quantum Security? - Palo Alto Networks, accessed on September 27,
+2025, https://www.paloaltonetworks.com/cyberpedia/what-is-quantum-security
+16. Cybersecurity Quantum Attack - Identity Management Institute®, accessed on
+September 27, 2025,
+https://identitymanagementinstitute.org/cybersecurity-quantum-attack/
+17. What Is Quantum Computing's Threat to Cybersecurity? - Palo Alto Networks,
+accessed on September 27, 2025,
+https://www.paloaltonetworks.com/cyberpedia/what-is-quantum-computings-th
+reat-to-cybersecurity
+18. Quantum-safe security - Adtran, accessed on September 27, 2025,
+https://www.adtran.com/en/innovation/quantum-safe-security
+19. Quantum Key Distribution (QKD) and Quantum Cryptography QC - National
+Security Agency, accessed on September 27, 2025,
+https://www.nsa.gov/Cybersecurity/Quantum-Key-Distribution-QKD-and-Quantu
+m-Cryptography-QC/
+20. Quantum Key Distribution - arXiv, accessed on September 27, 2025,
+https://arxiv.org/html/2507.23192v1
+21. Quantum key distribution - Wikipedia, accessed on September 27, 2025,
+https://en.wikipedia.org/wiki/Quantum_key_distribution
+22. Should Quantum Key Distribution be Used for Secure Communications? | ANSSI,
+accessed on September 27, 2025,
+https://cyber.gouv.fr/en/publications/should-quantum-key-distribution-be-used-s
+ecure-communications
+23. Why making quantum repeaters is hard, accessed on September 27, 2025,
+https://www.qutube.nl/quantum-internet-14/why-making-quantum-repeaters-ishard
+24. Security of quantum key distribution using a simplified trusted relay | Phys. Rev. A,
+accessed on September 27, 2025,
+https://link.aps.org/doi/10.1103/PhysRevA.91.012338
+25. Relaxing Trust Assumptions on Quantum Key Distribution Networks - arXiv,
+accessed on September 27, 2025, https://arxiv.org/html/2402.13136v2
+26. AI-Driven 5G Network Slicing: Revolutionizing Enterprise Connectivity -
+ResearchGate, accessed on September 27, 2025,
+https://www.researchgate.net/publication/390425844_AI-Driven_5G_Network_Sli
+cing_Revolutionizing_Enterprise_Connectivity
+27. AT&T U.S. Patents, Patent Applications and Patent Search - Justia ..., accessed on
+September 27, 2025, https://patents.justia.com/company/att
+28. WO2017214271A1 - Artificial intelligence-based network advisor - Google
+Patents, accessed on September 27, 2025,
+https://patents.google.com/patent/WO2017214271A1/en
+29. Patents Assigned to T-Mobile USA, Inc, - Justia Patents Search, accessed on
+September 27, 2025, https://patents.justia.com/assignee/t-mobile-usa-inc
+30. Neuromorphic vs. Conventional AI: A Data Engineering Tool Review, accessed on
+September 27, 2025,
+https://dataengineeracademy.com/blog/neuromorphic-vs-conventional-ai-a-data
+-engineering-tool-review/
+31. Neuromorphic computing: The future of AI and beyond - Atos, accessed on
+September 27, 2025,
+https://atos.net/en/blog/neuromorphic-computing-the-future-of-ai-and-beyond
+32. Neuromorphic Computing - an Edgier, Greener AI | Towards Data Science,
+accessed on September 27, 2025,
+https://towardsdatascience.com/neuromorphic-computing-an-edgier-greener-ai
+-3911fab9fe09/
+33. About 6G technology: 6G Meaning, features, benefits, challenges | Blackview
+Blog, accessed on September 27, 2025,
+https://www.blackview.hk/blog/tech-news/6g-technology
+34. Neuromorphic Computing: Mimicking the Brain Beyond Neural Networks | Onyx,
+accessed on September 27, 2025,
+https://www.onyxgs.com/blog/neuromorphic-computing-mimicking-brain-beyon
+d-neural-networks
+35. What Is Neuromorphic Computing? - IBM, accessed on September 27, 2025,
+https://www.ibm.com/think/topics/neuromorphic-computing
+36. How Neuromorphic Systems Improve Anomaly Detection in Networks - Patsnap
+Eureka, accessed on September 27, 2025,
+https://eureka.patsnap.com/report-how-neuromorphic-systems-improve-anomal
+y-detection-in-networks
+37. Neuromorphic Computing: The New Frontier of AI and Computer Science
+Inspired by the Human Brain - Assured Systems, accessed on September 27,
+2025,
+https://www.assured-systems.com/neuromorphic-computing-the-new-frontierof-ai-and-computer-science-inspired-by-the-human-brain/
+38. Plans & Papers - 6G IA, accessed on September 27, 2025,
+https://6g-ia.eu/plans-papers/
+39. 6G explained | Nokia.com, accessed on September 27, 2025,
+https://www.nokia.com/6g/6g-explained/
+40. Quantum network - Wikipedia, accessed on September 27, 2025,
+https://en.wikipedia.org/wiki/Quantum_network
+41. AT&T Is Buying 95% of Lumen's Quantum Fiber. Will Prices Go Up? - American TV,
+accessed on September 27, 2025,
+https://www.americantv.com/att-is-buying-95-percent-of-lumens-quantum-fiber
+.php
+42. Neuromorphic Computing - Fraunhofer-Institut für Integrierte Schaltungen IIS,
+accessed on September 27, 2025,
+https://www.iis.fraunhofer.de/en/ff/sse/ic-design/neuromorphic-computing.html
+43. Neuromorphic Computing and Engineering with AI | Intel®, accessed on
+September 27, 2025,
+https://www.intel.com/content/www/us/en/research/neuromorphic-computing.ht
+ml
+44. AT&T will be “quantum ready” by the year 2025; New fiber network launched in
+Indiana, accessed on September 27, 2025,
+https://techblog.comsoc.org/2022/10/07/att-will-be-quantum-ready-by-the-year
+-2025-but-may-not-be-fully-quantum-secured/
+45. Quantum Key Distribution (QKD) - Quantum Technology, accessed on September
+27, 2025,
+https://qt.eu/quantum-principles/communication/quantum-key-distribution-qkd
+46. Quantum cryptography - Wikipedia, accessed on September 27, 2025,
+https://en.wikipedia.org/wiki/Quantum_cryptography
+47. Relaxing Trust Assumptions on Quantum Key Distribution Networks - arXiv,
+accessed on September 27, 2025, https://arxiv.org/html/2402.13136v1
+48. Quantum Key Distribution (QKD): Securing Secrets with Single Photons - Medium,
+accessed on September 27, 2025,
+https://medium.com/quantum-computing-and-cybersecurity/quantum-key-distri
+bution-qkd-securing-secrets-with-single-photons-77904a59a428
+49. A Neuromorphic Algorithm for Radiation Anomaly Detection, accessed on
+September 27, 2025,
+https://impact.ornl.gov/en/publications/a-neuromorphic-algorithm-for-radiationanomaly-detection
+50. Quantum Repeaters | Figueroa Research Group - Stony Brook University,
+accessed on September 27, 2025,
+https://www.stonybrook.edu/commcms/physics/figueroa-research-group/researc
+h/testbed_research/quantum_repeaters.php
+51. Quantum repeaters use defects in diamond to interconnect quantum systems |
+MIT News, accessed on September 27, 2025,
+https://news.mit.edu/2023/quantum-repeaters-use-defects-diamond-interconne
+ct-quantum-systems-0927
+52. What are quantum repeaters?, accessed on September 27, 2025,
+https://www.aliroquantum.com/blog/what-are-quantum-repeaters
+53. Top 10 Companies in Neuromorphic Chip Market in 2024 Shaping Global Industry
+Trends, accessed on September 27, 2025,
+https://www.emergenresearch.com/blog/top-10-companies-in-neuromorphic-ch
+ip-market
+54. Neuromorphic computing - Wikipedia, accessed on September 27, 2025,
+https://en.wikipedia.org/wiki/Neuromorphic_computing
+55. Explore the 7 Top Neuromorphic Computing Companies & Startups to Watch in
+2026, accessed on September 27, 2025,
+https://www.startus-insights.com/innovators-guide/neuromorphic-computing-co
+mpanies/
+56. Enhancing spiking neural networks with hybrid top-down attention - PMC,
+accessed on September 27, 2025,
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9443487/
+57. Is Neuromorphic Computing the Future of AI? - Exoswan Insights, accessed on
+September 27, 2025,
+https://exoswan.com/is-neuromorphic-computing-the-future-of-ai
+58. An example of intent-based 6G network architecture - ResearchGate, accessed
+on September 27, 2025,
+https://www.researchgate.net/figure/An-example-of-intent-based-6G-network-a
+rchitecture_fig2_342972968
+59. Intent-Based Network Management in 6G Core Networks - IoT Lab, accessed on
+September 27, 2025,
+http://iotlab.skku.edu/publications/international-conference/ICTC2022-IBN-6G-C
+ore-Network.pdf
+60. Toward 6G Native-AI Network: Foundation Model based Cloud-Edge-End
+Collaboration Framework - arXiv, accessed on September 27, 2025,
+https://arxiv.org/pdf/2310.17471
+61. Self-Organising Memristive Networks (SOMNs) - Emergent Mind, accessed on
+September 27, 2025,
+https://www.emergentmind.com/topics/self-organising-memristive-networks-so
+mns
+62. SORN: a self-organizing recurrent neural network - Frontiers, accessed on
+September 27, 2025,
+https://www.frontiersin.org/journals/computational-neuroscience/articles/10.3389
+/neuro.10.023.2009/full
+63. AI-native networks and the Implications for 6G | Wireless Infrastructure
+Association, accessed on September 27, 2025,
+https://wia.org/ai-native-networks-and-the-implications-for-6g/
+64. Neuromorphic Computing for Real-Time Manufacturing Equipment Decisions -
+Oxmaint, accessed on September 27, 2025,
+https://oxmaint.com/blog/post/neuromorphic-computing-for-real-time-manufact
+uring-equipment-decisions
+65. Exploring Spiking Neural Networks for Prediction of Traffic Congestion in
+Networks- on-Chip - Pure - Ulster University's Research Portal, accessed on
+September 27, 2025, https://pure.ulster.ac.uk/files/78532266/ISCAS_Paper_v3.1.pdf
+66. Exploring Spiking Neural Networks for Prediction of Traffic Congestion in
+Networks-on-Chip | Request PDF - ResearchGate, accessed on September 27,
+2025,
+https://www.researchgate.net/publication/349293689_Exploring_Spiking_Neural_
+Networks_for_Prediction_of_Traffic_Congestion_in_Networks-on-Chip
+67. AI-Driven Network Slicing in 5G and Beyond: Unlocking Intelligent Connectivity -
+Byanat, accessed on September 27, 2025,
+https://www.byanat.ai/blog/ai-driven-network-slicing-in-5g-and-beyond-unlocki
+ng-intelligent-connectivity
+68. AI in network operations: How do you build trust in a self-healing network? - STL
+Partners, accessed on September 27, 2025,
+https://stlpartners.com/articles/network-innovation/ai-in-network-operations/
+69. Digital Twin Network-Based 6G Self-Evolution - MDPI, accessed on September 27,
+2025, https://www.mdpi.com/1424-8220/25/11/3543
+70. Neuromorphic quantum computing | Phys. Rev. E - Physical Review Link Manager,
+accessed on September 27, 2025,
+https://link.aps.org/doi/10.1103/PhysRevE.106.045311
+71. Neuromorphic QC (NQC) - Quantum Computing Modalities, accessed on
+September 27, 2025,
+https://postquantum.com/quantum-modalities/neuromorphic-quantum-computin
+g/
+72. Quantum neuromorphic computing - OSTI, accessed on September 27, 2025,
+https://www.osti.gov/servlets/purl/1852977
+73. AT&T Intellectual Property | AT&T Innovation, accessed on September 27, 2025,
+https://about.att.com/innovation/ip
+74. Patents – Sales & Licensing | AT&T Intellectual Property, accessed on September
+27, 2025, https://about.att.com/innovation/ip/patents
+75. AT&T hopes quantum networking will amplify the power of quantum computing -
+CNET, accessed on September 27, 2025,
+https://www.cnet.com/tech/computing/att-hopes-quantum-networking-will-ampl
+ify-the-power-of-quantum-computing/
+76. Huawei's Quantum Encryption Patents: Securing Future Data ..., accessed on
+September 27, 2025,
+https://patentpc.com/blog/huaweis-quantum-encryption-patents-securing-futur
+e-data-transfers
+77. Charting the path to 6G | Nokia.com, accessed on September 27, 2025,
+https://www.nokia.com/6g/
+78. 6G spectrum - future mobile life beyond 2030 - Ericsson, accessed on
+September 27, 2025,
+https://www.ericsson.com/en/reports-and-papers/white-papers/6g-spectrum-en
+abling-the-future-mobile-life-beyond-2030
+Abstract: A system and method for a self-managing, quantum-secured
+sixth-generation (6G) communications network is disclosed. The system comprises a
+tri-layered architecture featuring a 6G Transport Layer for high-throughput data
+transmission, a Quantum Security Layer (QSL) for providing information-theoretic
+security, and a Neuromorphic Cognitive Orchestration Layer (NCOL) for autonomous
+network management. The QSL utilizes a hybrid of Post-Quantum Cryptography (PQC)
+and Quantum Key Distribution (QKD) to secure network communications against both
+classical and quantum threats. The NCOL, implemented via a distributed network of
+neuromorphic co-processors running Spiking Neural Networks (SNNs), provides
+real-time, low-latency, and energy-efficient control over both the transport and
+security layers. Key inventive steps include a method for neuromorphic management of
+QKD trusted relays, wherein the NCOL dynamically assesses relay trustworthiness to
+route quantum keys along the most secure paths, thereby mitigating critical
+vulnerabilities in prior art. The invention further includes a system for emergent
+intent-based networking, where the network self-organizes to fulfill high-level service
+objectives, and a method for predictive self-healing based on microsecond-level
+anomaly detection. A quantum-state-aware digital twin, managed by the NCOL,
+enables high-fidelity simulation and pre-validation of network optimizations, including
+the probabilistic behavior of the quantum layer, facilitating true network self-evolution.
 A System and Method for a Neuromorphic-Orchestrated, Quantum-Secured 6G Communications Network
 
 
